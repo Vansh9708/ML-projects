@@ -1,23 +1,10 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# ___
-# 
-# <a href='http://www.pieriandata.com'> <img src='../Pierian_Data_Logo.png' /></a>
-# ___
-# # Linear Regression Project - Solutions
-# 
-# Congratulations! You just got some contract work with an Ecommerce company based in New York City that sells clothing online but they also have in-store style and clothing advice sessions. Customers come in to the store, have sessions/meetings with a personal stylist, then they can go home and order either on a mobile app or website for the clothes they want.
-# 
-# The company is trying to decide whether to focus their efforts on their mobile app experience or their website. They've hired you on contract to help them figure it out! Let's get started!
-# 
-# Just follow the steps below to analyze the customer data (it's fake, don't worry I didn't give you real credit card numbers or emails).
 
 # ## Imports
+#
 # ** Import pandas, numpy, matplotlib,and seaborn. Then set %matplotlib inline 
-# (You'll import sklearn as you need it.)**
+#
 
-# In[275]:
+
 
 
 import pandas as pd
@@ -36,7 +23,7 @@ get_ipython().run_line_magic('matplotlib', 'inline')
 # * Time on Website: Average time spent on Website in minutes
 # * Length of Membership: How many years the customer has been a member. 
 # 
-# ** Read in the Ecommerce Customers csv file as a DataFrame called customers.**
+
 
 # In[276]:
 
@@ -68,9 +55,9 @@ customers.info()
 # 
 # **Let's explore the data!**
 # 
-# For the rest of the exercise we'll only be using the numerical data of the csv file.
+
 # ___
-# **Use seaborn to create a jointplot to compare the Time on Website and Yearly Amount Spent columns. Does the correlation make sense?**
+# **Use seaborn to create a jointplot to compare the Time on Website and Yearly Amount Spent columns.**
 
 # In[280]:
 
@@ -102,7 +89,7 @@ sns.jointplot(x='Time on App',y='Yearly Amount Spent',data=customers)
 sns.jointplot(x='Time on App',y='Length of Membership',kind='hex',data=customers)
 
 
-# **Let's explore these types of relationships across the entire data set. Use [pairplot](https://stanford.edu/~mwaskom/software/seaborn/tutorial/axis_grids.html#plotting-pairwise-relationships-with-pairgrid-and-pairplot) to recreate the plot below.(Don't worry about the the colors)**
+# **Let's explore these types of relationships across the entire data set.
 
 # In[284]:
 
@@ -216,10 +203,8 @@ plt.ylabel('Predicted Y')
 
 
 # ## Evaluating the Model
-# 
+
 # Let's evaluate our model performance by calculating the residual sum of squares and the explained variance score (R^2).
-# 
-# ** Calculate the Mean Absolute Error, Mean Squared Error, and the Root Mean Squared Error. Refer to the lecture or to Wikipedia for the formulas**
 
 # In[303]:
 
@@ -232,10 +217,7 @@ print('MSE:', metrics.mean_squared_error(y_test, predictions))
 print('RMSE:', np.sqrt(metrics.mean_squared_error(y_test, predictions)))
 
 
-# ## Residuals
-# 
-# You should have gotten a very good model with a good fit. Let's quickly explore the residuals to make sure everything was okay with our data. 
-# 
+
 # **Plot a histogram of the residuals and make sure it looks normally distributed. Use either seaborn distplot, or just plt.hist().**
 
 # In[317]:
@@ -256,9 +238,6 @@ coeffecients = pd.DataFrame(lm.coef_,X.columns)
 coeffecients.columns = ['Coeffecient']
 coeffecients
 
-
-# ** How can you interpret these coefficients? **
-
 # Interpreting the coefficients:
 # 
 # - Holding all other features fixed, a 1 unit increase in **Avg. Session Length** is associated with an **increase of 25.98 total dollars spent**.
@@ -266,12 +245,9 @@ coeffecients
 # - Holding all other features fixed, a 1 unit increase in **Time on Website** is associated with an **increase of 0.19 total dollars spent**.
 # - Holding all other features fixed, a 1 unit increase in **Length of Membership** is associated with an **increase of 61.27 total dollars spent**.
 
-# **Do you think the company should focus more on their mobile app or on their website?**
 
-# 
+
 # This is tricky, there are two ways to think about this: Develop the Website to catch up to the performance of the mobile app, or develop the app more since that is what is working better. This sort of answer really depends on the other factors going on at the company, you would probably want to explore the relationship between Length of Membership and the App or the Website before coming to a conclusion!
-# 
 
-# ## Great Job!
-# 
-# Congrats on your contract work! The company loved the insights! Let's move on.
+
+
